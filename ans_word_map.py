@@ -1,12 +1,12 @@
 ANS_WORD_LIST = {
     "pdtb2": [
-        "although",    
+        "although",
         "nevertheless",
         "but",
-        "however",     
-        "because",     
+        "however",
+        "because",
         "so",
-        "therefore",   
+        "therefore",
         "thus",
         "since",
         "instead",
@@ -193,12 +193,11 @@ ANS_LABEL_LIST = {
     }
 }
 
-SUBTYPE_LABEL2ANS_WORD = {
+SUBTYPE_LABEL2ANS_WORD ={
     "pdtb2": {
         "Comparison": "but",
         "Comparison.Concession": "although",
         "Comparison.Contrast": "but",
-        "Contingency": "because",
         "Contingency.Cause.Reason": "because",
         "Contingency.Cause.Result": "so",
         "Contingency.Pragmatic cause": "since",
@@ -208,19 +207,16 @@ SUBTYPE_LABEL2ANS_WORD = {
         "Expansion.Instantiation": "instance",
         "Expansion.List": "first",
         "Expansion.Restatement": "specifically",
-        "Temporal": "then",
         "Temporal.Asynchronous.Precedence": "then",
         "Temporal.Asynchronous.Succession": "previously",
         "Temporal.Synchrony": "simultaneously"
     },
     "pdtb3": {
-        "Comparison": "but",
         "Comparison.Concession+SpeechAct.Arg2-as-denier+SpeechAct": "but",
         "Comparison.Concession.Arg1-as-denier": "although",
         "Comparison.Concession.Arg2-as-denier": "however",
         "Comparison.Contrast": "but",
         "Comparison.Similarity": "similarly",
-        "Contingency": "because",
         "Contingency.Cause+Belief.Reason+Belief": "because",
         "Contingency.Cause+Belief.Result+Belief": "so",
         "Contingency.Cause+SpeechAct.Reason+SpeechAct": "because",
@@ -232,7 +228,6 @@ SUBTYPE_LABEL2ANS_WORD = {
         "Contingency.Condition.Arg2-as-cond": "if",
         "Contingency.Purpose.Arg1-as-goal": "for",
         "Contingency.Purpose.Arg2-as-goal": "for",
-        "Expansion": "and",
         "Expansion.Conjunction": "and",
         "Expansion.Disjunction": "and",
         "Expansion.Equivalence": "namely",
@@ -245,26 +240,22 @@ SUBTYPE_LABEL2ANS_WORD = {
         "Expansion.Manner.Arg1-as-manner": "thereby",
         "Expansion.Manner.Arg2-as-manner": "by",
         "Expansion.Substitution.Arg2-as-subst": "instead",
-        "Temporal": "then",
         "Temporal.Asynchronous.Precedence": "then",
         "Temporal.Asynchronous.Succession": "previously",
         "Temporal.Synchronous": "simultaneously"
     },
     "conll": {
-        "Comparison": "but",
         "Comparison.Concession": "although",
         "Comparison.Contrast": "but",
-        "Contingency": "because",
         "Contingency.Cause.Reason": "because",
         "Contingency.Cause.Result": "so",
-        "Expansion": "and",
         "Expansion.Alternative.Chosen alternative": "instead",
         "Expansion.Conjunction": "and",
         "Expansion.Instantiation": "example",
         "Expansion.Restatement": "specifically",
-        "Temporal": "then",
         "Temporal.Asynchronous.Precedence": "then",
         "Temporal.Asynchronous.Succession": "previously",
         "Temporal.Synchrony": "meanwhile"
     }
 }
+
