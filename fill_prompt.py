@@ -1,14 +1,14 @@
 import pandas as pd
 import re
-import transformers
+# import transformers
 
 from typing import *
 
 
 class PromptFiller:
     def __init__(
-        self, df:pd.DataFrame, prompt, ignore=(), 
-        tokenizer:transformers.PreTrainedTokenizer=None,
+        self, df:pd.DataFrame, prompt, 
+        ignore=(), tokenizer=None,
     ) -> None:
         self.df = df
         self.prompt = prompt
@@ -16,16 +16,21 @@ class PromptFiller:
         self.tokenizer = tokenizer
     
     def __iter__(self):
-        for p in range(self.df.shape[0]):
-            row = self.df.iloc[p]
-            res = self.fill_prompt(row, self.prompt, self.ignore, self.tokenizer)
+        for index, row in self.df.iterrows():
+            res = self.fill_prompt(
+                row=row, prompt=self.prompt, ignore=self.ignore, tokenizer=self.tokenizer
+            )
             yield res            
-        # return iter(iter_func())
+    
+    @property
+    def list(self):
+        return list(self)
     
     @classmethod
     def fill_prompt(
-        cls, row:Union[pd.Series, dict], prompt, ignore=(), 
-        tokenizer:transformers.PreTrainedTokenizer=None):
+        cls, row:Union[pd.Series, dict], prompt, 
+        ignore=(), tokenizer=None
+    ):
         def replace_func(blank:re.Match):
             blank = blank.group()[1:-1]
             if ignore and blank in ignore:
@@ -36,19 +41,22 @@ class PromptFiller:
             except:
                 raise Exception(f'row don\'t have blank(attr): {blank}')  
         
-        if type(prompt) == str:
+        if isinstance(prompt, str):
             prompt = re.sub(r'\{[^{}]*\}', replace_func, prompt)
             if '<mask>' in prompt:
                 # assert tokenizer.mask_token, f'{type(tokenizer)} has no mask_token'
                 prompt = prompt.replace('<mask>', tokenizer.mask_token)
             return prompt
-        elif type(prompt) == dict:
+        elif isinstance(prompt, dict):
             return {
-                k: cls.fill_prompt(row, v, ignore=ignore)
+                k: cls.fill_prompt(row=row, prompt=v, ignore=ignore, tokenizer=tokenizer)
                 for k,v in prompt.items()
             }
-        elif type(prompt) == list:
-            return [cls.fill_prompt(row, p, ignore=ignore)for p in prompt]
+        elif isinstance(prompt, (list, tuple)):
+            return [
+                cls.fill_prompt(row=row, prompt=p, ignore=ignore, tokenizer=tokenizer)
+                for p in prompt
+            ]
         else:
             raise Exception('wrong type of prompt')
             
