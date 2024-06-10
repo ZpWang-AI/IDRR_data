@@ -1,3 +1,5 @@
-# Utils
+# IDRR_data
 
-Utilities used by zpwang.
+Data for IDRR. To get the dataframe easily.
+
+By zpwang

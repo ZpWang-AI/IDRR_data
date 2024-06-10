@@ -1,7 +1,8 @@
 import setuptools
 
 
-package_name = 'utils'
+package_name = 'IDRR_data'
+description = 'data for IDRR'
 
 
 def get_version():
@@ -28,7 +29,7 @@ def main():
         version=get_version(),
         author='zpwang',
         author_email='zhipangwang@gmail.com',
-        description='Utilities',
+        description=description,
         long_description=long_description,
         long_description_content_type='text/markdown',
         package_dir={'': 'src'},
