@@ -18,19 +18,19 @@ nohup.out
 
 # ==============================
 
-/*
 !/.gitignore
-!/setup.py
-!/VERSION
 !/README.md
 !/requirements.txt
 !/src
-!/utils
 
 # src
 src/scripts
-src/*.egg-info
 !src/model/_test_model.py
 !src/data/_test_data.py
+src/cp_data.sh
 
 # data
+!/data
+!/data/used/conll_test.p1.csv
+!/data/used/conll_blind_test.p1.csv
+
