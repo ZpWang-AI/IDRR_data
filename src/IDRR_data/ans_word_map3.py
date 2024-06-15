@@ -1,3 +1,6 @@
+# from ans_word_map
+# level1,2 -> top, second
+# del some subtypelabel according to CP-KC
 ANS_WORD_LIST = {
     "pdtb2": [
         "although",
@@ -64,7 +67,7 @@ ANS_WORD_LIST = {
 
 ANS_LABEL_LIST = {
     "pdtb2": {
-        "level1": [
+        "top": [
             "Comparison",
             "Comparison",
             "Comparison",
@@ -85,7 +88,7 @@ ANS_LABEL_LIST = {
             "Temporal",
             "Temporal"
         ],
-        "level2": [
+        "second": [
             "Comparison.Concession",
             "Comparison.Concession",
             "Comparison.Contrast",
@@ -108,7 +111,7 @@ ANS_LABEL_LIST = {
         ]
     },
     "pdtb3": {
-        "level1": [
+        "top": [
             "Comparison",
             "Comparison",
             "Comparison",
@@ -128,7 +131,7 @@ ANS_LABEL_LIST = {
             "Temporal",
             "Temporal"
         ],
-        "level2": [
+        "second": [
             "Comparison.Concession",
             "Comparison.Concession",
             "Comparison.Contrast",
@@ -150,7 +153,7 @@ ANS_LABEL_LIST = {
         ]
     },
     "conll": {
-        "level1": [
+        "top": [
             "Comparison",
             "Comparison",
             "Comparison",
@@ -170,7 +173,7 @@ ANS_LABEL_LIST = {
             "Temporal",
             "Temporal"
         ],
-        "level2": [
+        "second": [
             "Comparison.Concession",
             "Comparison.Contrast",
             "Comparison.Contrast",
