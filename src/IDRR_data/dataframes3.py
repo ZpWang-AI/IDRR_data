@@ -70,9 +70,12 @@ class IDRRDataFrames:
     # Dataframe
     # =================================================================
     
-    def get_dataframe(self, split) -> pd.DataFrame:
+    def get_dataframe(self, split=Literal['train', 'dev', 'test', 'all']) -> pd.DataFrame:
         df = self.df
-        df = df[df['split']==split]
+        if split == 'all':
+            df = df[~pd.isna(df['split'])]
+        else:
+            df = df[df['split']==split]
         if self.data_relation != 'All':
             df = df[df['relation']==self.data_relation]
         if self.data_name and self.data_level != 'raw':
@@ -94,6 +97,10 @@ class IDRRDataFrames:
     @property
     def test_df(self) -> pd.DataFrame:
         return self.get_dataframe('test')
+    
+    @property
+    def all_df(self) -> pd.DataFrame:
+        return self.get_dataframe('all')
             
     # =================================================================
     # Label
