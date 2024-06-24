@@ -62,8 +62,8 @@ class PromptFiller:
             
     
 if __name__ == '__main__':
-    from dataframes import DataFrames
-    pdtb2_df = DataFrames(
+    from .dataframes3 import IDRRDataFrames
+    pdtb2_df = IDRRDataFrames(
         data_name='pdtb2',
         label_level='level2',
         relation='Implicit',
