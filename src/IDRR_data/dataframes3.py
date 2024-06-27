@@ -66,6 +66,18 @@ class IDRRDataFrames:
         if data_path:
             self.df = pd.read_csv(data_path, low_memory=False)
     
+    @property
+    def json(self):
+        return {
+            'data_name': self.data_name,
+            'data_level': self.data_level,
+            'data_relation': self.data_relation,
+            'data_path': self.data_path,
+        }
+        
+    def __repr__(self):
+        return f'{self.data_name}_{self.data_level}_{self.data_relation}'
+        
     # =================================================================
     # Dataframe
     # =================================================================
