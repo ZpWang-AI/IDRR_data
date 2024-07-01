@@ -5,7 +5,7 @@ TOP_LEVEL_LABEL_LIST = [
     "Comparison",
     "Contingency",
     "Expansion",
-    "Temporal"
+    "Temporal",
 ]
 SEC_LEVEL_LABEL_LIST = {
     "pdtb2": [
@@ -22,12 +22,12 @@ SEC_LEVEL_LABEL_LIST = {
         "Expansion.Restatement",
         
         "Temporal.Asynchronous",
-        "Temporal.Synchrony"
+        "Temporal.Synchrony",
     ],
     "pdtb3": [
         "Comparison.Concession",
         "Comparison.Contrast",
-        "Comparison.Similarity"  # New added
+        "Comparison.Similarity",  # New added
         
         "Contingency.Cause",
         # "Contingency.Cause+Belief",
@@ -61,7 +61,7 @@ SEC_LEVEL_LABEL_LIST = {
         
         "Temporal.Asynchronous.Precedence",
         "Temporal.Asynchronous.Succession",
-        "Temporal.Synchrony"
+        "Temporal.Synchrony",
     ]
 }
 
