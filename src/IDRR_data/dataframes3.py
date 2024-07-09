@@ -64,7 +64,13 @@ class IDRRDataFrames:
     
         self.df = pd.DataFrame()
         if data_path:
-            self.df = pd.read_csv(data_path, low_memory=False)
+            self.load_df(data_path)
+        else:
+            self.data_path = None
+    
+    def load_df(self, data_path):
+        self.data_path = data_path
+        self.df = pd.read_csv(data_path, low_memory=False)
     
     @property
     def json(self):
