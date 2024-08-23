@@ -237,17 +237,6 @@ class IDRRDataFrames:
             return conn, self.ans_word_to_id(conn)
         return (irrelevent_conn,)*2
     
-        sense2 = self.process_sense(
-            sense=sense, label_list=list(subtype_label2ans_word.keys()), 
-            irrelevent_sense=pd.NA,
-        )[0]
-        if not pd.isna(sense2):
-            conn = subtype_label2ans_word[sense2]
-            return conn, ans_word_list.index(conn)
-        else:
-            raise Exception(f'sense <{sense}> not in subtype_label')
-            return irrelevent_conn, irrelevent_conn
-    
     def process_df_conn(self, df:pd.DataFrame):
         ans_word_list = self.ans_word_list
         subtype_label2ans_word = self.subtype_label2ans_word
