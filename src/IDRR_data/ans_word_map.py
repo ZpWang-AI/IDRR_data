@@ -64,7 +64,7 @@ ANS_WORD_LIST = {
 
 ANS_LABEL_LIST = {
     "pdtb2": {
-        "level1": [
+        "top": [
             "Comparison",
             "Comparison",
             "Comparison",
@@ -85,7 +85,7 @@ ANS_LABEL_LIST = {
             "Temporal",
             "Temporal"
         ],
-        "level2": [
+        "second": [
             "Comparison.Concession",
             "Comparison.Concession",
             "Comparison.Contrast",
@@ -108,7 +108,7 @@ ANS_LABEL_LIST = {
         ]
     },
     "pdtb3": {
-        "level1": [
+        "top": [
             "Comparison",
             "Comparison",
             "Comparison",
@@ -128,7 +128,7 @@ ANS_LABEL_LIST = {
             "Temporal",
             "Temporal"
         ],
-        "level2": [
+        "second": [
             "Comparison.Concession",
             "Comparison.Concession",
             "Comparison.Contrast",
@@ -150,7 +150,7 @@ ANS_LABEL_LIST = {
         ]
     },
     "conll": {
-        "level1": [
+        "top": [
             "Comparison",
             "Comparison",
             "Comparison",
@@ -170,7 +170,7 @@ ANS_LABEL_LIST = {
             "Temporal",
             "Temporal"
         ],
-        "level2": [
+        "second": [
             "Comparison.Concession",
             "Comparison.Contrast",
             "Comparison.Contrast",
@@ -198,18 +198,28 @@ SUBTYPE_LABEL2ANS_WORD ={
         "Comparison": "but",
         "Comparison.Concession": "although",
         "Comparison.Contrast": "but",
+        
         "Contingency.Cause.Reason": "because",
         "Contingency.Cause.Result": "so",
         "Contingency.Pragmatic cause": "since",
+        
         "Expansion": "and",
         "Expansion.Alternative": "instead",
         "Expansion.Conjunction": "and",
         "Expansion.Instantiation": "instance",
         "Expansion.List": "first",
         "Expansion.Restatement": "specifically",
+        
         "Temporal.Asynchronous.Precedence": "then",
         "Temporal.Asynchronous.Succession": "previously",
-        "Temporal.Synchrony": "simultaneously"
+        "Temporal.Synchrony": "simultaneously",
+
+        # New Added
+        "Expansion.Restatement.Specification": "specifically",
+        "Comparison.Contrast.Juxtaposition": "however",
+
+        "Contingency": "because",
+        "Temporal": "then",
     },
     "pdtb3": {
         "Comparison.Concession+SpeechAct.Arg2-as-denier+SpeechAct": "but",
@@ -217,6 +227,7 @@ SUBTYPE_LABEL2ANS_WORD ={
         "Comparison.Concession.Arg2-as-denier": "however",
         "Comparison.Contrast": "but",
         "Comparison.Similarity": "similarly",
+        
         "Contingency.Cause+Belief.Reason+Belief": "because",
         "Contingency.Cause+Belief.Result+Belief": "so",
         "Contingency.Cause+SpeechAct.Reason+SpeechAct": "because",
@@ -228,6 +239,7 @@ SUBTYPE_LABEL2ANS_WORD ={
         "Contingency.Condition.Arg2-as-cond": "if",
         "Contingency.Purpose.Arg1-as-goal": "for",
         "Contingency.Purpose.Arg2-as-goal": "for",
+        
         "Expansion.Conjunction": "and",
         "Expansion.Disjunction": "and",
         "Expansion.Equivalence": "namely",
@@ -240,22 +252,32 @@ SUBTYPE_LABEL2ANS_WORD ={
         "Expansion.Manner.Arg1-as-manner": "thereby",
         "Expansion.Manner.Arg2-as-manner": "by",
         "Expansion.Substitution.Arg2-as-subst": "instead",
+        
         "Temporal.Asynchronous.Precedence": "then",
         "Temporal.Asynchronous.Succession": "previously",
-        "Temporal.Synchronous": "simultaneously"
+        "Temporal.Synchronous": "simultaneously",
     },
     "conll": {
         "Comparison.Concession": "although",
         "Comparison.Contrast": "but",
+        
         "Contingency.Cause.Reason": "because",
         "Contingency.Cause.Result": "so",
+        
         "Expansion.Alternative.Chosen alternative": "instead",
         "Expansion.Conjunction": "and",
         "Expansion.Instantiation": "example",
         "Expansion.Restatement": "specifically",
+        
         "Temporal.Asynchronous.Precedence": "then",
         "Temporal.Asynchronous.Succession": "previously",
-        "Temporal.Synchrony": "meanwhile"
+        "Temporal.Synchrony": "meanwhile",
+        
+        # New Added
+        "Comparison": "but",
+        "Contingency": "because",
+        "Expansion": "and",
+        "Temporal": "then",
     }
 }
 

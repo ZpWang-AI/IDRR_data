@@ -1,10 +1,11 @@
-LEVEL1_LABEL_LIST = [
+TOP_LEVEL_LABEL_LIST = [
     "Comparison",
     "Contingency",
     "Expansion",
-    "Temporal"
+    "Temporal",
 ]
-LEVEL2_LABEL_LIST = {
+
+SEC_LEVEL_LABEL_LIST = {
     "pdtb2": [
         "Comparison.Concession",
         "Comparison.Contrast",
@@ -19,14 +20,15 @@ LEVEL2_LABEL_LIST = {
         "Expansion.Restatement",
         
         "Temporal.Asynchronous",
-        "Temporal.Synchrony"
+        "Temporal.Synchrony",
     ],
     "pdtb3": [
         "Comparison.Concession",
         "Comparison.Contrast",
+        # "Comparison.Similarity",  # in CPKD
         
         "Contingency.Cause",
-        "Contingency.Cause+Belief",
+        "Contingency.Cause+Belief",  # not in CPKD
         "Contingency.Condition",
         "Contingency.Purpose",
         
@@ -57,13 +59,13 @@ LEVEL2_LABEL_LIST = {
         
         "Temporal.Asynchronous.Precedence",
         "Temporal.Asynchronous.Succession",
-        "Temporal.Synchrony"
+        "Temporal.Synchrony",
     ]
 }
 
 
 if __name__ == '__main__':
-    for v in LEVEL2_LABEL_LIST.values():
+    for v in SEC_LEVEL_LABEL_LIST.values():
         if v != sorted(v):
             print(v)
             break

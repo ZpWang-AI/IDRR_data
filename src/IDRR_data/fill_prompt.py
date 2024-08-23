@@ -18,7 +18,10 @@ class PromptFiller:
     def __iter__(self):
         for index, row in self.df.iterrows():
             res = self.fill_prompt(
-                row=row, prompt=self.prompt, ignore=self.ignore, tokenizer=self.tokenizer
+                row=row, 
+                prompt=self.prompt, 
+                ignore=self.ignore, 
+                tokenizer=self.tokenizer
             )
             yield res            
     
@@ -28,25 +31,29 @@ class PromptFiller:
     
     @classmethod
     def fill_prompt(
-        cls, row:Union[pd.Series, dict], prompt, 
-        ignore=(), tokenizer=None
+        cls, 
+        row:Union[pd.Series, dict],
+        prompt, 
+        ignore=(), 
+        tokenizer=None,
     ):
-        def replace_func(blank:re.Match):
-            blank = blank.group()[1:-1]
-            if ignore and blank in ignore:
-                return ''
-            try:
-                blank_val = row.__getattr__(blank)
-                return str(blank_val) if pd.notna(blank_val) else ''
-            except:
-                raise Exception(f'row don\'t have blank(attr): {blank}')  
-        
         if isinstance(prompt, str):
+            def replace_func(blank:re.Match):
+                blank = blank.group()[1:-1]
+                if ignore and blank in ignore:
+                    return ''
+                try:
+                    blank_val = row.__getattr__(blank)
+                    return str(blank_val) if pd.notna(blank_val) else ''
+                except:
+                    raise Exception(f'row don\'t have blank(attr): {blank}')  
+            
             prompt = re.sub(r'\{[^{}]*\}', replace_func, prompt)
             if '<mask>' in prompt:
                 # assert tokenizer.mask_token, f'{type(tokenizer)} has no mask_token'
                 prompt = prompt.replace('<mask>', tokenizer.mask_token)
             return prompt
+
         elif isinstance(prompt, dict):
             return {
                 k: cls.fill_prompt(row=row, prompt=v, ignore=ignore, tokenizer=tokenizer)
@@ -62,7 +69,7 @@ class PromptFiller:
             
     
 if __name__ == '__main__':
-    from .dataframes3 import IDRRDataFrames
+    from .dataframes import IDRRDataFrames
     pdtb2_df = IDRRDataFrames(
         data_name='pdtb2',
         label_level='level2',
