@@ -133,7 +133,10 @@ class IDRRDataFrames:
     ) -> Tuple[str, int]:
         """
         match the longest label
-        return: label, lid
+
+        return: 
+            label, lid
+            null_sense, null_sense (if not in label_list)
         """
         if pd.isna(sense):
             return (null_sense,)*2 
@@ -204,8 +207,19 @@ class IDRRDataFrames:
         self, conn:str, sense:str,
         ans_word_list:list=None, 
         subtype_label2ans_word:dict=None,
-        irrelevent_conn=pd.NA,
+        null_conn=pd.NA,
     ) -> Tuple[str, int]:
+        """
+        process conn to get ans_word
+        
+        if ans_word in ans_word_list, return it directly
+        elif sense in subtype_label2ans_word(dict), return subtype_label2ans_word[sense]
+        else return subtype_label2ans_word[top_sense]
+        
+        return:
+            ans_word ans_word_id
+            null_conn, null_conn (if ans_word not in )
+        """
         if not ans_word_list:
             ans_word_list = self.ans_word_list
         if not subtype_label2ans_word:
@@ -216,12 +230,12 @@ class IDRRDataFrames:
         
         if pd.notna(sense):
             if sense not in subtype_label2ans_word:
+                # return (null_conn,)*2  # CPKD
                 sense = sense.split('.')[0]
-                # return (irrelevent_conn,)*2  # CPKD
             conn = subtype_label2ans_word[sense]
             return conn, self.ans_word_to_id(conn)
         else:
-            return (irrelevent_conn,)*2
+            return (null_conn,)*2
     
     def process_df_conn(self, df:pd.DataFrame):
         ans_word_list = self.ans_word_list
@@ -235,7 +249,7 @@ class IDRRDataFrames:
                 ans_word, awid = self.process_conn(
                     conn=conn, sense=sense, ans_word_list=ans_word_list,
                     subtype_label2ans_word=subtype_label2ans_word,
-                    irrelevent_conn=pd.NA,
+                    null_conn=pd.NA,
                 )
                 ans_word_values.append(ans_word)
                 awid_values.append(awid)
