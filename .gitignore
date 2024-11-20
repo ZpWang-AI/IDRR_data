@@ -18,6 +18,7 @@ nohup.out
 
 /*
 !/.gitignore
+!/pyproject.toml
 !/README.md
 !/requirements.txt
 !/setup.py

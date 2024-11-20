@@ -1,0 +1,28 @@
+[project]
+name = "IDRR_data"
+version = "1.1.0"
+description = "data for IDRR"
+# requires-python = ">=3.8"
+dependencies = [
+    "numpy", "pandas"
+]
+authors = [
+    { name="Zhipang Wang", email="zhipangwang@gmail.com" },
+]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    # "License :: OSI Approved :: MIT License",
+    # "Operating System :: OS Independent",
+]
+
+# [project.scripts]
+# zp = "script:zp_help"
+# bgpy = "script:run_python_background"
+# update_bashrc = "script:update_bashrc"
+# zp_test = "script:zp_cmd_test"
+# bgpy = "utils_zp.script.bg_python:run_python_background"
+
+# [build-system]
+# requires = ["hatchling"]
+# build-backend = "hatchling.build"
