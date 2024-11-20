@@ -1,29 +1,13 @@
-import pandas as pd
-import numpy as np
-import json
 import os
 import re
+import json
+import pandas as pd
+import numpy as np
 
 from typing import *
-from IDRR_data.label_list import TOP_LEVEL_LABEL_LIST, SEC_LEVEL_LABEL_LIST
-from IDRR_data.ans_word_map import ANS_WORD_LIST, ANS_LABEL_LIST, SUBTYPE_LABEL2ANS_WORD
-
-
-def ans_words2token_id(ans_words, tokenizer):
-    import transformers
-    vocab = tokenizer.get_vocab()
-    if isinstance(tokenizer, transformers.RobertaTokenizer) or \
-        isinstance(tokenizer, transformers.RobertaTokenizerFast):
-        def ans_word_tokenizer(word:str):
-            return vocab['Ġ'+word.strip()]
-    elif isinstance(tokenizer, transformers.BertTokenizer) or \
-        isinstance(tokenizer, transformers.BertTokenizerFast):
-        def ans_word_tokenizer(word:str):
-            return vocab[word.strip()]
-    else:
-        raise Exception('wrong type of tokenizer')
-    
-    return list(map(ans_word_tokenizer, ans_words))
+from .label_list import TOP_LEVEL_LABEL_LIST, SEC_LEVEL_LABEL_LIST
+from .ans_word_map import ANS_WORD_LIST, ANS_LABEL_LIST, SUBTYPE_LABEL2ANS_WORD
+from .words2token_ids import words2token_ids
 
 
 """
@@ -144,15 +128,15 @@ class IDRRDataFrames:
     
     def process_sense(
         self, sense:str,
+        null_sense=pd.NA,
         label_list=None, 
-        irrelevent_sense=pd.NA,
     ) -> Tuple[str, int]:
         """
         match the longest label
         return: label, lid
         """
         if pd.isna(sense):
-            return (irrelevent_sense,)*2 
+            return (null_sense,)*2 
 
         if not label_list:
             label_list = self.label_list
@@ -168,7 +152,7 @@ class IDRRDataFrames:
         if sense.startswith(res_label):
             return res_label, res_lid
         else:
-            return (irrelevent_sense,)*2
+            return (null_sense,)*2
         
     def process_df_sense(self, df:pd.DataFrame):
         label_list = self.label_list
@@ -179,7 +163,7 @@ class IDRRDataFrames:
             label_values, lid_values = [], []
             for sense in df[sense_key]:
                 label, lid = self.process_sense(
-                    sense=sense, label_list=label_list, irrelevent_sense=pd.NA,
+                    sense=sense, label_list=label_list, null_sense=pd.NA,
                 )
                 label_values.append(label)
                 lid_values.append(lid)
@@ -196,7 +180,7 @@ class IDRRDataFrames:
         return ANS_WORD_LIST[self.data_name]
     
     def get_ans_word_token_id_list(self, tokenizer) -> list:
-        return ans_words2token_id(ans_words=self.ans_word_list, tokenizer=tokenizer)
+        return words2token_ids(words=self.ans_word_list, tokenizer=tokenizer)
     
     @property
     def ans_label_list(self) -> list:

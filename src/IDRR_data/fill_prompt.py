@@ -69,17 +69,17 @@ class PromptFiller:
             
     
 if __name__ == '__main__':
-    from .dataframes import IDRRDataFrames
+    from dataframes import IDRRDataFrames
     pdtb2_df = IDRRDataFrames(
         data_name='pdtb2',
-        label_level='level2',
-        relation='Implicit',
-        data_path=r'/public/home/hongy/zpwang/LLM_Reasoning/data/used/pdtb2.p1.csv',
+        data_level='top',
+        data_relation='Implicit',
+        data_path=r'D:\ZpWang\Projects\02.01-IDRR_data\data\used\pdtb3_test.p1.csv',
     )
     df = pdtb2_df.train_df
     df['empty'] = pd.NA
     filler = PromptFiller(
-        df, prompt='{conn1sense1}  {relation} >>{empty}<<'
+        df, prompt='{label11} {label11id}  {relation} >>{empty}<<'
     )
     for p, fp in enumerate(list(filler)):
         print(fp)
