@@ -4,6 +4,11 @@ The data of IDRR (Implicit Discourse Relation Recognition), including PDTB2, PDT
 
 To get dataframe easily.
 
+~~~sh
+cd IDRR_data
+pip install -e .
+~~~
+
 ## Data
 
 * columns of csv
