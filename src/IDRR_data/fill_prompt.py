@@ -33,10 +33,26 @@ class PromptFiller:
     def fill_prompt(
         cls, 
         row:Union[pd.Series, dict],
-        prompt, 
-        ignore=(), 
+        prompt: Union[str, dict, list, tuple], 
+        ignore=(),
         tokenizer=None,
     ):
+        """
+        fill the {to_fill_key} in prompt with value in row \\
+        replace '<mask>' with tokenizer.mask_token
+
+        row can be pd.Series or dict
+
+        if prompt is str:
+            fill itself,
+            return str
+        if prompt is dict:
+            recursively fill it's values,
+            return dict
+        if prompt is (list, tuple):
+            recursively fill it's elements,
+            return (list, tuple)
+        """
         if isinstance(prompt, str):
             def replace_func(blank:re.Match):
                 blank = blank.group()[1:-1]
@@ -69,7 +85,7 @@ class PromptFiller:
             
     
 if __name__ == '__main__':
-    from dataframes import IDRRDataFrames
+    from IDRR_data import IDRRDataFrames
     pdtb2_df = IDRRDataFrames(
         data_name='pdtb2',
         data_level='top',
