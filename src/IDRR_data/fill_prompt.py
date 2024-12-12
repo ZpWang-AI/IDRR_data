@@ -2,6 +2,7 @@ import pandas as pd
 import re
 # import transformers
 
+from builtins import list as builtin_list
 from typing import *
 
 
@@ -33,7 +34,7 @@ class PromptFiller:
     def fill_prompt(
         cls, 
         row:Union[pd.Series, dict],
-        prompt: Union[str, dict, list, tuple], 
+        prompt: Union[str, dict, builtin_list, tuple], 
         ignore=(),
         tokenizer=None,
     ):
