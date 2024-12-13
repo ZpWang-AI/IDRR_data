@@ -44,22 +44,24 @@ class IDRRDataFrames:
         self.data_relation = data_relation 
         self.data_path = data_path
     
-        self.df = pd.DataFrame()
-        if data_path:
-            self.load_df(data_path)
+        self.df:pd.DataFrame = None
+        # if data_path:
+        #     self.load_df(data_path)
     
     def load_df(self, data_path):
         self.data_path = data_path
         self.df = pd.read_csv(data_path, low_memory=False)
     
     @property
-    def json(self):
-        return {
+    def json_dic(self):
+        dic = {
             'data_name': self.data_name,
             'data_level': self.data_level,
             'data_relation': self.data_relation,
-            'data_path': (self.data_path if self.data_path else ''),
         }
+        if self.data_path:
+            dic['data_path'] = self.data_path
+        return dic
         
     def __repr__(self):
         return f'{self.data_name}_{self.data_level}_{self.data_relation}'
@@ -69,6 +71,8 @@ class IDRRDataFrames:
     # =================================================================
     
     def get_dataframe(self, split=Literal['train', 'dev', 'test', 'all', 'raw']) -> pd.DataFrame:
+        if self.df is None:
+            self.load_df(self.data_path)
         df = self.df.copy(deep=True)
         # relation
         if self.data_relation != 'All':
