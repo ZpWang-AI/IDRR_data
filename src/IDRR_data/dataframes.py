@@ -62,6 +62,10 @@ class IDRRDataFrames:
         if self.data_path:
             dic['data_path'] = self.data_path
         return dic
+
+    @property
+    def arg_dic(self):
+        return self.json_dic
         
     def __repr__(self):
         return f'{self.data_name}_{self.data_level}_{self.data_relation}'
