@@ -29,6 +29,12 @@ processed columns:
     'ans_word1', 'ans_word1id', 'ans_word2', 'ans_word2id'
 """
 class IDRRDataFrames:
+    new_columns = [
+        'label11', 'label11id', 'label12', 'label12id', 
+        'label21', 'label21id', 'label22', 'label22id', 
+        'ans_word1', 'ans_word1id', 'ans_word2', 'ans_word2id',
+    ]
+
     def __init__(
         self,
         data_name:Literal['pdtb2', 'pdtb3', 'conll']=None,
@@ -69,6 +75,11 @@ class IDRRDataFrames:
         
     def __repr__(self):
         return f'{self.data_name}_{self.data_level}_{self.data_relation}'
+    
+    @classmethod
+    def del_new_columns(cls, df:'pd.DataFrame'):
+        return df.drop(columns=cls.new_columns)
+
         
     # =================================================================
     # Dataframe
@@ -82,6 +93,7 @@ class IDRRDataFrames:
         if self.data_relation != 'All':
             df = df[df['relation']==self.data_relation]
         # split
+        split = split.lower()
         assert split in ['train', 'dev', 'test', 'all', 'raw']
         if split == 'raw':
             pass
