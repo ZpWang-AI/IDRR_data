@@ -78,7 +78,7 @@ class IDRRDataFrames:
     
     @classmethod
     def del_new_columns(cls, df:'pd.DataFrame'):
-        return df.drop(columns=cls.new_columns)
+        return df.drop(columns=cls.new_columns, errors='ignore')
 
         
     # =================================================================
@@ -107,7 +107,7 @@ class IDRRDataFrames:
             df = self.process_df_conn(df)
             df = df[pd.notna(df['label11'])]
             df = df[pd.notna(df['ans_word1'])]
-        df.reset_index(inplace=True)
+        # df.reset_index(inplace=True)
         return df
     
     @property
